@@ -2,24 +2,123 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-  width: 8px;
+:root {
+  --terminal-black: #141414;
+  --terminal-dark: #1c1c1c;
+  --terminal-gray: #2a2a2a;
+  --terminal-text: #e0e0e0;
+  --terminal-green: #00b894;
+  --terminal-red: #ff5252;
+  --terminal-blue: #0984e3;
+  --terminal-yellow: #fdcb6e;
 }
 
-::-webkit-scrollbar-track {
-  background: #1f2937;
-  border-radius: 4px;
+/* Enable GPU acceleration */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #4b5563;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
-  @apply bg-black text-white font-sans;
+  @apply bg-[var(--terminal-black)] text-[var(--terminal-text)] font-mono;
+  font-feature-settings: "tnum" on, "lnum" on;
+}
+
+.terminal-header {
+  @apply text-xs font-bold uppercase tracking-wider text-[var(--terminal-blue)];
+}
+
+.terminal-value {
+  @apply font-mono text-lg tracking-tight;
+}
+
+.terminal-cell {
+  @apply bg-[var(--terminal-dark)] p-4 rounded-xl border border-[var(--terminal-gray)]/20 backdrop-blur-sm;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.terminal-cell:hover {
+  border-color: var(--terminal-blue);
+  transition: border-color 0.2s ease;
+}
+
+.scrollbar-terminal {
+  scrollbar-width: thin;
+  scrollbar-color: var(--terminal-gray) var(--terminal-dark);
+}
+
+.scrollbar-terminal::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-terminal::-webkit-scrollbar-track {
+  background: var(--terminal-dark);
+  border-radius: 3px;
+}
+
+.scrollbar-terminal::-webkit-scrollbar-thumb {
+  background: var(--terminal-gray);
+  border-radius: 3px;
+}
+
+.scrollbar-terminal::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-blue);
+}
+
+.price-up {
+  @apply text-[var(--terminal-green)];
+}
+
+.price-down {
+  @apply text-[var(--terminal-red)];
+}
+
+.indicator-bar {
+  @apply h-1.5 bg-[var(--terminal-gray)] rounded-full overflow-hidden;
+}
+
+.indicator-progress {
+  @apply h-full transition-all duration-300;
+}
+
+/* Loading skeleton animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--terminal-dark) 0%,
+    var(--terminal-gray) 50%,
+    var(--terminal-dark) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Glass effect */
+.glass-effect {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Optimized transitions */
+.transition-optimized {
+  will-change: transform, opacity;
 }
