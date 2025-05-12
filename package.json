@@ -1,0 +1,23 @@
+{
+  "name": "morfeus",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^15.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "framer-motion": "^10.16.3",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/react": "^18.2.41",
+    "@types/node": "^20.11.19"
+  }
+}
